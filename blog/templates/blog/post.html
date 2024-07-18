@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block main %}
+    <div class="col-sm-12">
+        <h3 class="text-white my-3 text-center">USER POSTS</h3>
+        <h2>{{post.title}}</h2> <br>
+        <p>{{post.desc}}</p>
+        <div class="row">
+            <div class="col-auto">
+                <h6>Views:<span class="badge text-bg-secondary">{{post.views}}</span></h6>
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-primary btn-sm" href="{% url 'blog:postlike' post.id %}">Likes <span>{{post.likes}}</span></a>
+            </div>
+        </div>
+        <div class="row text-right ml-5">
+            <div class="col-ms-auto">
+                {% for comment in post.comments.all %}
+                    <h3>{{comment.comment}}</h3> <br>
+                {% empty %}
+                    <h4>No Comments</h4>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto">
+                <form action="" method="post">
+                    <label for="">Comment</label> <br>
+                    <textarea name="" id="" cols="90" rows="5"></textarea> <br><br>
+                    <input type="submit" value="Post Your Comment" class="btn btn-primary btn-md">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

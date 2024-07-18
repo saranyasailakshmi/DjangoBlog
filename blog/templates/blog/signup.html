@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block main %}
+    <div class=" col-sm-12">
+        <h3 class="text-white my-3 text-center">User Registration Page</h3>
+        <style>
+            .success{
+                color: green;
+            }
+        </style>
+        <div class="row justify-content-center g-5">
+            {% if messages %}
+                {% for message in messages %}
+                    <h3 
+                        {% if message.tags %} 
+                            class="alert alert-{{message.tags}}" 
+                        {% endif %}
+                    >{{message}}</h3>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" novalidate class="col-sm-8 row g-2">
+                {% csrf_token %}
+                {% for field in form %}
+                    {{field.label_tag}} {{field}} {{field.errors|striptags}} <br><br>
+                {% endfor  %}
+                <input type="submit" value="SignUp" class="btn btn-primary mb-3">
+            </form>
+        </div>
+    </div>
+{% endblock main %}

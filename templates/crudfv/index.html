@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Django Web Development</h1>
+        <a href="{% url 'crudfv:fvindex' %}">CRUD-FV</a>
+        <a href="{% url 'crudcbv:cbvindex' %}">CRUD-CBV</a>
+        <a href="{% url 'blog:bloghome' %}">BLOG</a>
+
+    </div>
+</body>
+</html>

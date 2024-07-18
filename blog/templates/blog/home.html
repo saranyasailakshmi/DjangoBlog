@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block main %}
+    <div class="col-sm-12">
+        <h3 class="text-white my-3 text-center">POSTS</h3>
+        
+        {% if posts %}
+        <table class="table table-hover bg-white">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col" style="width:3%;"></th>
+                    <th scope="col" style="width:10%;"></th>
+                    <th scope="col" style="width:35%;"></th>
+                </tr>
+            </thead> 
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td scope="row">
+                            <span class="badge rounded-pill bg-primary">Views:{{post.views}}</span>
+                            <span class="badge rounded-pill bg-primary">Answers:0</span>
+                            <span class="badge rounded-pill bg-primary">Likes:{{post.Likes}}</span>
+                        </td>
+                        <th scope="row">{{post.id}}
+                            <img width="200" height="100" src="{{post.post_image.url}}" alt="" srcset="">{{post.post_image.url}}
+                        </th>
+                        <td><a href="{% url 'blog:post' post.id %}">{{post.title}} </a></td>
+                        <td>{{post.desc}} <br>
+                            <a href="">{{post.author|title}}</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="">Answer</a>
+                        </td>                             
+                    </tr>
+                    {% empty %}
+                    <h4 class="text-center alert alert-warning"></h4>
+                {% endfor %}
+            </tbody>
+
+        </table>
+        {% endif %}
+    </div>
+{% endblock main %}

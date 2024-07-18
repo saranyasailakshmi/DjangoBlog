@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>session data</title>
+</head>
+<body>
+    <h1>Session variable data: {{sid}} | {{sname}} </h1>
+    {% for i in request.session.items %}
+        <h2>{{i}}</h2>
+    {% endfor%}
+    {{request.session.get_session_cookie_age}} <br>
+    {{request.session.get_expiry_age}} <br>
+    {{request.session.get_expiry_date}} <br>
+    {{request.session.get_expire_at_browser_close}} <br>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<style>
+    .success{
+        color: rgb(255, 55, 0);
+    }
+    .errors{
+        color: darkblue;
+    }
+    .backbtn{
+            /* display: inline-block; */
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid transparent;
+            /* transition: all 0.3s ease; */
+        }
+</style>
+<body>
+    <h1>Welcome to Profile : {{username}}</h1>
+    <a href="{% url 'blog:myprofile' %}">My Profile</a>
+    <a href="{% url 'blog:logout' %}">Logout</a>
+    <a href="{% url 'blog:changepwd1' %}">Change PassWord</a>
+    <a href="{% url 'blog:changepwd2' %}">Forgot PassWord</a>
+    <a href="{% url 'blog:dashboard' %}">DashBoard</a>
+
+
+    {% if users %}
+        {% for user in users %}
+            <a href="{% url 'blog:userinfo' user.id %}" >{{user.username}}</a>
+        {%endfor%}
+    {% endif %}
+    {% if form %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        {{field.label_tag}} {{field}} {{field.errors|striptags}}<br><br>
+        {% endfor %}
+        <!-- {{form.as_p}} -->
+        <input type="submit" value="Submit">
+        <a href="{% url 'blog:profile' %}"  class="backbtn">Back</a>
+    </form>
+    {% endif %}
+    {% if messages %}
+        {% for message in messages %}
+            <h3 {% if message.tags %} class="{{message.tags}}" {% endif %} >{{message}}</h3>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
